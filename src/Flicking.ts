@@ -78,6 +78,7 @@ export interface FlickingOptions {
   iOSEdgeSwipeThreshold: number;
   preventClickOnDrag: boolean;
   disableOnInit: boolean;
+  disabled: boolean;
   changeOnHold: boolean;
 
   // PERFORMANCE
@@ -156,6 +157,7 @@ class Flicking extends Component<FlickingEvents> {
   private _iOSEdgeSwipeThreshold: FlickingOptions["iOSEdgeSwipeThreshold"];
   private _preventClickOnDrag: FlickingOptions["preventClickOnDrag"];
   private _disableOnInit: FlickingOptions["disableOnInit"];
+  private _disabled: FlickingOptions["disabled"];
   private _changeOnHold: FlickingOptions["changeOnHold"];
 
   private _renderOnlyVisible: FlickingOptions["renderOnlyVisible"];
@@ -927,6 +929,9 @@ class Flicking extends Component<FlickingEvents> {
     }
     if (this._disableOnInit) {
       this.disableInput();
+    }
+    if (this._disabled) {
+      this._control.disable();
     }
     renderer.checkPanelContentsReady(renderer.panels);
 
